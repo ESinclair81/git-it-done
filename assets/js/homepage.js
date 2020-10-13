@@ -1,8 +1,28 @@
-//
+// Variables for Form data //
+var userFormEl = document.querySelector("#user-form");
+var nameInputEl = document.querySelector("#username");
+
+//Form submit function //
+var formSubmitHandler = function(event) {
+    event.preventDefault();
+    // get value from input element
+var username = nameInputEl.value.trim();
+
+if (username) {
+  getUserRepos(username);
+  nameInputEl.value = "";
+} else {
+  alert("Please enter a GitHub username");
+}
+    console.log(event);
+  };
+
+
+// fetch function for user repo info// 
 var response = fetch("https://api.github.com/users/octocat/repos");
 console.log(response);
   
-var getUserRepos = function(user) {
+userFormEl.addEventListener("submit", formSubmitHandler); {
     // format the github api url
     var apiUrl = "https://api.github.com/users/" + user + "/repos";
   
@@ -14,4 +34,7 @@ var getUserRepos = function(user) {
     });
   };
   
-  console.log("outside")
+  
+
+  
+
